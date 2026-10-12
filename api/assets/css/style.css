@@ -1,0 +1,67 @@
+:root {
+    --primary-color: #0d6efd;
+    --success-color: #198754;
+    --dark-color: #212529;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: #2b303a;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.2s ease;
+}
+
+.card-header {
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+.btn-primary:hover {
+    background-color: #1e40af;
+    border-color: #1e40af;
+}
+
+.table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.party-badge {
+    display: inline-block;
+    padding: 0.35rem 0.65rem;
+    font-weight: 700;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-align: center;
+    min-width: 65px;
+}
+
+.party-pdp { background-color: #fee2e2; color: #991b1b; }
+.party-dpp { background-color: #fef3c7; color: #92400e; }
+.party-acn { background-color: #e0e7ff; color: #3730a3; }
+.party-ppa { background-color: #dcfce7; color: #166534; }
+.party-cdc { background-color: #f3e8ff; color: #6b21a8; }
+.party-jp  { background-color: #ffedd5; color: #9a3412; }
+.party-anpp{ background-color: #e0f2fe; color: #075985; }
+.party-labour { background-color: #ecfdf5; color: #065f46; }
+.party-cpp { background-color: #f1f5f9; color: #334155; }
+.party-default { background-color: #e2e8f0; color: #1e293b; }
+
+.stat-card {
+    border-left: 4px solid var(--primary-color);
+}

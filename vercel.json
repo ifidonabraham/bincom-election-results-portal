@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "functions": {
+    "api/**/*.php": {
+      "runtime": "vercel-php@0.7.3"
+    }
+  },
+  "routes": [
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/api/get_wards.php", "dest": "/api/get_wards.php" },
+    { "src": "/api/get_polling_units.php", "dest": "/api/get_polling_units.php" },
+    { "src": "/lga_results.php", "dest": "/api/lga_results.php" },
+    { "src": "/new_polling_unit.php", "dest": "/api/new_polling_unit.php" },
+    { "src": "/index.php", "dest": "/api/index.php" },
+    { "src": "/", "dest": "/api/index.php" }
+  ]
+}
