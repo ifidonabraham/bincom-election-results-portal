@@ -1,23 +1,23 @@
 <?php
 // includes/db.php
-// Production-ready database configuration supporting environment variables and local development
+// Production-ready database configuration supporting TiDB Cloud, Aiven, and local XAMPP environments
 
 $is_local = in_array($_SERVER['SERVER_NAME'] ?? '', ['localhost', '127.0.0.1']) && empty(getenv('DB_HOST'));
 
 if ($is_local) {
-    // Local XAMPP MySQL defaults
+    // Local development MySQL
     $host = '127.0.0.1';
     $port = 3306;
     $dbname = 'bincom_test';
     $user = 'root';
     $pass = '';
 } else {
-    // Cloud database (Aiven / remote)
-    $host = getenv('DB_HOST') ?: '46.101.174.125';
-    $port = getenv('DB_PORT') ?: 17992;
-    $dbname = getenv('DB_NAME') ?: 'defaultdb';
-    $user = getenv('DB_USER') ?: 'avnadmin';
-    $pass = getenv('DB_PASS') !== false && getenv('DB_PASS') !== '' ? getenv('DB_PASS') : (file_exists(__DIR__ . '/.secret') ? trim(file_get_contents(__DIR__ . '/.secret')) : '');
+    // Cloud TiDB / Serverless MySQL
+    $host = getenv('DB_HOST') ?: 'gateway01.ap-northeast-1.prod.aws.tidbcloud.com';
+    $port = getenv('DB_PORT') ?: 4000;
+    $dbname = getenv('DB_NAME') ?: 'bincom_test';
+    $user = getenv('DB_USER') ?: '2EcGdLjiu3g38d4.root';
+    $pass = getenv('DB_PASS') !== false && getenv('DB_PASS') !== '' ? getenv('DB_PASS') : (file_exists(__DIR__ . '/.secret') ? trim(file_get_contents(__DIR__ . '/.secret')) : 'n7UsnsyyTMJ6MvTV');
 }
 
 $options = [
@@ -25,6 +25,7 @@ $options = [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     PDO::ATTR_EMULATE_PREPARES   => false,
     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4",
+    PDO::MYSQL_ATTR_SSL_CA       => true,
     PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false
 ];
 
