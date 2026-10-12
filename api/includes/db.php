@@ -1,12 +1,24 @@
 <?php
 // includes/db.php
-// Production-ready database configuration supporting environment variables
+// Production-ready database configuration supporting environment variables and local development
 
-$host = getenv('DB_HOST') ?: 'mysql-4199e6f-ifidonabraham249-26ea.k.aivencloud.com';
-$port = getenv('DB_PORT') ?: 17992;
-$dbname = getenv('DB_NAME') ?: 'defaultdb';
-$user = getenv('DB_USER') ?: 'avnadmin';
-$pass = getenv('DB_PASS') !== false ? getenv('DB_PASS') : '';
+$is_local = in_array($_SERVER['SERVER_NAME'] ?? '', ['localhost', '127.0.0.1']) && empty(getenv('DB_HOST'));
+
+if ($is_local) {
+    // Local XAMPP MySQL defaults
+    $host = '127.0.0.1';
+    $port = 3306;
+    $dbname = 'bincom_test';
+    $user = 'root';
+    $pass = '';
+} else {
+    // Cloud database (Aiven / remote)
+    $host = getenv('DB_HOST') ?: '46.101.174.125';
+    $port = getenv('DB_PORT') ?: 17992;
+    $dbname = getenv('DB_NAME') ?: 'defaultdb';
+    $user = getenv('DB_USER') ?: 'avnadmin';
+    $pass = getenv('DB_PASS') !== false && getenv('DB_PASS') !== '' ? getenv('DB_PASS') : (file_exists(__DIR__ . '/.secret') ? trim(file_get_contents(__DIR__ . '/.secret')) : '');
+}
 
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
