@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         try {
-            const res = await fetch(`api/get_wards.php?lga_id=${lgaId}`);
+            const res = await fetch(`/api/get_wards.php?lga_id=${encodeURIComponent(lgaId)}`);
             const result = await res.json();
             if (result.success && result.data.length > 0) {
                 wardSelect.innerHTML = '<option value="">-- Choose Ward --</option>';
@@ -306,6 +306,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Also load all polling units for this LGA
             loadPollingUnits(lgaId, preselectWardId, initialPuUniqueId);
         } catch (err) {
+            console.error(err);
             wardSelect.innerHTML = '<option value="">Error loading wards</option>';
         }
     }
@@ -316,9 +317,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!lgaId) return;
 
-        let url = `api/get_polling_units.php?lga_id=${lgaId}`;
+        let url = `/api/get_polling_units.php?lga_id=${encodeURIComponent(lgaId)}`;
         if (wardId) {
-            url += `&ward_id=${wardId}`;
+            url += `&ward_id=${encodeURIComponent(wardId)}`;
         }
 
         try {

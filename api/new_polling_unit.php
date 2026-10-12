@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         try {
-            const res = await fetch(`api/get_wards.php?lga_id=${lgaId}`);
+            const res = await fetch(`/api/get_wards.php?lga_id=${encodeURIComponent(lgaId)}`);
             const result = await res.json();
             if (result.success && result.data.length > 0) {
                 wardSelect.innerHTML = '<option value="">-- Choose Ward --</option>';
