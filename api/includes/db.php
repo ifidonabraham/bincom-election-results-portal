@@ -17,7 +17,7 @@ if ($is_local) {
     $port = getenv('DB_PORT') ?: 4000;
     $dbname = getenv('DB_NAME') ?: 'bincom_test';
     $user = getenv('DB_USER') ?: '2EcGdLjiu3g38d4.root';
-    $pass = getenv('DB_PASS') !== false && getenv('DB_PASS') !== '' ? getenv('DB_PASS') : (file_exists(__DIR__ . '/.secret') ? trim(file_get_contents(__DIR__ . '/.secret')) : 'n7UsnsyyTMJ6MvTV');
+    $pass = getenv('DB_PASS') !== false && getenv('DB_PASS') !== '' ? getenv('DB_PASS') : (file_exists(__DIR__ . '/.secret') ? trim(file_get_contents(__DIR__ . '/.secret')) : '');
 }
 
 $options = [

@@ -2,3 +2,7 @@
 
 *.secret
 .secret
+
+*.mp4
+test-vid.mp4
+api/test-vid.mp4

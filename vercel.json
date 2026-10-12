@@ -7,6 +7,7 @@
   },
   "routes": [
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/test-vid.mp4", "dest": "/api/test-vid.mp4" },
     { "src": "/api/get_wards.php", "dest": "/api/get_wards.php" },
     { "src": "/api/get_polling_units.php", "dest": "/api/get_polling_units.php" },
     { "src": "/lga_results.php", "dest": "/api/lga_results.php" },
